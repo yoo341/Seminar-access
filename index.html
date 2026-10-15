@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seminar Access</title>
+<style>
+:root{--bg:#f2f6f5;--pn:#fff;--tx:#14212b;--mu:#4a5c68;--ln:#c3d0d6;--ac:#0b6e7f;--ab:#fff;--mk:#ffe38a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a21;--pn:#15252e;--tx:#eaf2f7;--mu:#a6b8c3;--ln:#2d4351;--ac:#5cc8da;--ab:#06222a;--mk:#6b5a10}}
+:root[data-theme="dark"]{--bg:#0e1a21;--pn:#15252e;--tx:#eaf2f7;--mu:#a6b8c3;--ln:#2d4351;--ac:#5cc8da;--ab:#06222a;--mk:#6b5a10}
+:root[data-theme="hc"]{--bg:#000;--pn:#000;--tx:#ffff00;--mu:#fff;--ln:#fff;--ac:#ffff00;--ab:#000;--mk:#0050ff}
+body{margin:0;background:var(--bg);color:var(--tx);font:1rem/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.er{letter-spacing:.04em;word-spacing:.12em;line-height:1.9}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:var(--pn);padding:8px;z-index:9}
+header{padding:12px 14px;border-bottom:1px solid var(--ln);background:var(--pn)}
+h1{font-size:1.4rem;margin:0}header p{margin:2px 0 8px;color:var(--mu)}
+h2{font-size:1.1rem;margin:0 0 6px}h3{font-size:1rem;margin:14px 0 4px}
+.set{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.set label{display:flex;gap:6px;align-items:center;margin:0}
+nav{display:flex;gap:4px;padding:8px 14px 0;overflow-x:auto}
+nav button{flex:1;min-width:90px;background:none;color:var(--mu);border:0;border-bottom:4px solid transparent;font:inherit;font-weight:700;padding:10px;min-height:44px;cursor:pointer}
+nav button[aria-selected=true]{color:var(--tx);border-color:var(--ac)}
+main{max-width:900px;margin:auto;padding:12px 14px 40px}
+.pn{background:var(--pn);border:1px solid var(--ln);border-radius:8px;padding:12px;margin-bottom:12px}
+button,select,input,textarea{font:inherit;color:var(--tx)}
+.b{background:var(--ac);color:var(--ab);border:2px solid var(--ac);border-radius:6px;padding:8px 14px;min-height:44px;font-weight:700;cursor:pointer}
+.g{background:transparent;color:var(--tx);border-color:var(--ln)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+input,select,textarea{width:100%;background:var(--bg);border:2px solid var(--ln);border-radius:6px;padding:8px;min-height:44px}
+.set select,.set input{width:auto}.set input{min-height:0}
+label{display:block;margin:8px 0 2px;font-weight:600}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.mu{color:var(--mu);font-size:.9rem}
+#cap{min-height:9rem;max-height:22rem;overflow-y:auto;font-size:1.6rem;line-height:1.45;border:3px solid var(--ln);border-radius:8px;padding:12px;background:var(--bg)}
+#cap.hit{border-color:var(--ac);outline:4px solid var(--ac)}
+mark{background:var(--mk);color:var(--tx);padding:0 3px;border-radius:3px}
+#cap i{opacity:.7}
+ul.l{list-style:none;padding:0;margin:8px 0}ul.l li{border-bottom:1px solid var(--ln);padding:8px 0}
+.tag{font-weight:700;color:var(--ac)}
+.chk label{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:6px 0}.chk input{width:22px;height:22px;min-height:0;flex:none}
+#msg{min-height:1.5rem;font-weight:600}
+textarea.out{min-height:14rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+<h1>Seminar Access</h1>
+<p>Live captions, notes and questions for online seminars and webinars.</p>
+<div class="set" role="group" aria-label="Display settings">
+<button class="b g" id="zo" aria-label="Smaller text">A&minus;</button><button class="b g" id="zi" aria-label="Larger text">A+</button>
+<label>Theme <select id="th"><option value="auto">Automatic</option><option value="light">Light</option><option value="dark">Dark</option><option value="hc">High contrast</option></select></label>
+<label><input type="checkbox" id="er"> Easy reading spacing</label>
+</div>
+</header>
+<nav role="tablist" aria-label="Sections"><button role="tab" id="t-live" aria-selected="true">During</button><button role="tab" id="t-ask" aria-selected="false">Ask</button><button role="tab" id="t-prep" aria-selected="false">Before</button></nav>
+<main id="main">
+<div id="msg" role="status" aria-live="polite"></div>
+
+<section id="p-live" role="tabpanel" aria-labelledby="t-live">
+<div class="pn"><h2>Live captions</h2>
+<p class="mu">Captions are made from your microphone, so play the seminar through your speakers or place a second device near it. Headphones will block them. They are automatic and can make mistakes, so do not rely on them for names, numbers or instructions. In Chrome the browser sends the audio to its speech service, so avoid confidential sessions.</p>
+<div class="row"><div style="flex:1;min-width:180px"><label for="lg">Language</label><select id="lg"><option value="en-GH">English (Ghana)</option><option value="en-GB">English (UK)</option><option value="en-US">English (US)</option><option value="fr-FR">French</option><option value="ar-SA">Arabic</option></select></div>
+<div style="flex:2;min-width:220px"><label for="kw">Alert me when I hear (separate with commas)</label><input id="kw" placeholder="my name, question, deadline"></div></div>
+<div class="row"><button class="b" id="go">Start captions</button><button class="b g" id="clr">Clear</button></div>
+<div id="cap" aria-label="Captions" tabindex="0">Captions will appear here.</div>
+<p class="mu" id="unsup" hidden>Live captions need Chrome or Edge on a computer or Android phone. In other browsers, use the captions built into your meeting platform and keep using the notes below.</p>
+</div>
+<div class="pn"><h2>Notes</h2>
+<div class="row"><button class="b g" data-tag="Key point">Save last sentence as key point</button><button class="b g" data-tag="Question">as question</button><button class="b g" data-tag="Action">as action</button></div>
+<label for="nt">Or type a note</label><textarea id="nt" rows="2"></textarea>
+<div class="row"><button class="b" id="na">Add note</button><button class="b g" id="cp">Copy transcript and notes</button></div>
+<ul class="l" id="nl"></ul></div>
+</section>
+
+<section id="p-ask" role="tabpanel" aria-labelledby="t-ask" hidden>
+<div class="pn"><h2>Say or send what you need</h2>
+<p class="mu">Choose a phrase or write your own, then read it aloud, copy it to paste in the chat, or save it for later.</p>
+<div class="row" id="ph"></div>
+<label for="dr">Your message or question</label><textarea id="dr" rows="3"></textarea>
+<div class="row"><label for="sp" style="margin:0;align-self:center">Speed</label><select id="sp" style="width:auto"><option value="0.8">Slow</option><option value="1" selected>Normal</option></select>
+<button class="b" id="rd">Read aloud</button><button class="b g" id="sx">Stop</button><button class="b g" id="dc">Copy</button><button class="b g" id="ds">Save for later</button></div></div>
+<div class="pn"><h2>Saved questions</h2><ul class="l" id="ql"></ul></div>
+</section>
+
+<section id="p-prep" role="tabpanel" aria-labelledby="t-prep" hidden>
+<div class="pn"><h2>Ask the organiser for support</h2>
+<p class="mu">Tick what would help you. The email updates as you go.</p>
+<div class="row"><div style="flex:1;min-width:180px"><label for="sm">Seminar or webinar</label><input id="sm"></div><div style="flex:1;min-width:140px"><label for="dt">Date</label><input id="dt" placeholder="e.g. 16 October"></div></div>
+<div class="row"><div style="flex:1;min-width:180px"><label for="og">Organiser's name</label><input id="og"></div><div style="flex:1;min-width:180px"><label for="nm">Your name</label><input id="nm"></div></div>
+<div class="chk" id="nd"></div>
+<label for="em">Email</label><textarea class="out" id="em" readonly></textarea>
+<div class="row"><button class="b" id="ec">Copy email</button><a class="b g" id="el" style="text-decoration:none;display:inline-flex;align-items:center" href="#">Open in email app</a></div></div>
+<div class="pn chk"><h2>Before you join</h2><div id="ck"></div></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id),ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const say=t=>{$('msg').textContent=t};
+async function copy(t){try{await navigator.clipboard.writeText(t);say('Copied.')}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');say('Copied.')}catch(x){say('Could not copy. Select the text and copy it yourself.')}a.remove()}}
+
+/* settings */
+let st=Object.assign({z:1,th:'auto',er:false},ld('sa-set',{}));
+function applySet(){const r=document.documentElement;r.style.fontSize=(16*st.z)+'px';st.th==='auto'?r.removeAttribute('data-theme'):r.setAttribute('data-theme',st.th);r.classList.toggle('er',st.er);$('th').value=st.th;$('er').checked=st.er;sv('sa-set',st)}
+$('zi').onclick=()=>{st.z=Math.min(2,st.z+.15);applySet()};$('zo').onclick=()=>{st.z=Math.max(.8,st.z-.15);applySet()};
+$('th').onchange=e=>{st.th=e.target.value;applySet()};$('er').onchange=e=>{st.er=e.target.checked;applySet()};applySet();
+
+/* tabs */
+const TB=['live','ask','prep'];
+function tab(k){TB.forEach(t=>{$('p-'+t).hidden=t!==k;$('t-'+t).setAttribute('aria-selected',t===k)})}
+TB.forEach(t=>$('t-'+t).onclick=()=>tab(t));
+
+/* captions */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let rec,on=false,t0=0,fin=[],nt=ld('sa-notes',[]);
+const tm=()=>{const s=Math.floor((Date.now()-t0)/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const kws=()=>$('kw').value.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
+function paint(im){const box=$('cap');let h=esc(fin.slice(-8).map(l=>l.x).join(' '));
+ kws().forEach(k=>{h=h.replace(new RegExp('('+esc(k).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>')});
+ if(im)h+=' <i>'+esc(im)+'</i>';box.innerHTML=h||'Listening...';box.scrollTop=box.scrollHeight}
+function hit(x){const k=kws().find(k=>x.toLowerCase().includes(k));if(!k)return;const b=$('cap');b.classList.add('hit');setTimeout(()=>b.classList.remove('hit'),2500);try{navigator.vibrate&&navigator.vibrate(200)}catch(e){}say('Heard: '+k)}
+function stop(){on=false;try{rec&&rec.stop()}catch(e){}$('go').textContent='Start captions'}
+$('go').onclick=()=>{if(on){stop();return}
+ if(!SR){$('unsup').hidden=false;say('Live captions are not supported in this browser.');return}
+ rec=new SR();rec.continuous=true;rec.interimResults=true;rec.lang=$('lg').value;
+ rec.onresult=e=>{let im='';for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i],x=r[0].transcript.trim();if(r.isFinal){if(x){fin.push({t:tm(),x});hit(x)}}else im+=x+' '}paint(im)};
+ rec.onerror=e=>{if(e.error==='no-speech'||e.error==='aborted')return;say(e.error==='not-allowed'||e.error==='service-not-allowed'?'Microphone blocked. Allow microphone access in your browser settings, then press Start again.':e.error==='network'?'Captions need an internet connection.':'Caption error: '+e.error);if(/not-allowed/.test(e.error)||e.error==='network')stop()};
+ rec.onend=()=>{if(on)try{rec.start()}catch(x){}};
+ if(!t0)t0=Date.now();on=true;$('go').textContent='Stop captions';say('Listening.');paint('');try{rec.start()}catch(e){}};
+$('clr').onclick=()=>{fin=[];t0=on?Date.now():0;$('cap').textContent='Captions will appear here.'};
+$('lg').onchange=()=>{if(on){stop();say('Language changed. Press Start captions again.')}};
+
+/* notes */
+function notes(){nt.length||($('nl').innerHTML='<li class="mu">No notes yet. Save a caption line with the buttons above, or type one.</li>');
+ if(nt.length)$('nl').innerHTML=nt.map((n,i)=>`<li><span class="tag">${esc(n.g)}</span> <span class="mu">${esc(n.t)}</span><br>${esc(n.x)} <button class="b g" data-d="${i}" aria-label="Delete note">Delete</button></li>`).join('');sv('sa-notes',nt)}
+function addN(g,x){nt.push({g,t:t0?tm():new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}),x});notes()}
+document.querySelectorAll('[data-tag]').forEach(b=>b.onclick=()=>{const l=fin[fin.length-1];if(!l){say('No caption yet. Type a note instead.');return}addN(b.dataset.tag,l.x);say('Saved as '+b.dataset.tag.toLowerCase()+'.')});
+$('na').onclick=()=>{const v=$('nt').value.trim();if(!v)return;addN('Note',v);$('nt').value=''};
+$('nl').onclick=e=>{const b=e.target.closest('[data-d]');if(b){nt.splice(+b.dataset.d,1);notes()}};
+$('cp').onclick=()=>copy('Transcript\n'+(fin.map(l=>`[${l.t}] ${l.x}`).join('\n')||'(none)')+'\n\nNotes\n'+(nt.map(n=>`[${n.t}] ${n.g}: ${n.x}`).join('\n')||'(none)'));
+notes();
+
+/* ask */
+const PH=['Could you repeat that, please?','Could you speak more slowly, please?','Could you share the slides, please?','Could you describe what is on the slide?','Please could captions be turned on?','I will type my question in the chat. Could you read it out?','Could we take a short break?','Could you spell that name or term?'];
+$('ph').innerHTML=PH.map((p,i)=>`<button class="b g" data-p="${i}">${esc(p)}</button>`).join('');
+$('ph').onclick=e=>{const b=e.target.closest('[data-p]');if(b){$('dr').value=PH[b.dataset.p];$('dr').focus()}};
+let qs=ld('sa-qs',[]);
+function speak(t){if(!window.speechSynthesis||!t){say('Reading aloud is not available here.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=+$('sp').value;speechSynthesis.speak(u)}
+$('rd').onclick=()=>speak($('dr').value.trim());$('sx').onclick=()=>window.speechSynthesis&&speechSynthesis.cancel();
+$('dc').onclick=()=>{const v=$('dr').value.trim();v&&copy(v)};
+$('ds').onclick=()=>{const v=$('dr').value.trim();if(!v)return;qs.push({x:v,d:false});$('dr').value='';qList();say('Saved.')};
+function qList(){$('ql').innerHTML=qs.map((q,i)=>`<li${q.d?' style="opacity:.6"':''}>${q.d?'<s>'+esc(q.x)+'</s>':esc(q.x)}<div class="row"><button class="b g" data-r="${i}">Read aloud</button><button class="b g" data-c="${i}">Copy</button><button class="b g" data-k="${i}">${q.d?'Undo':'Asked'}</button><button class="b g" data-x="${i}">Delete</button></div></li>`).join('')||'<li class="mu">Nothing saved yet.</li>';sv('sa-qs',qs)}
+$('ql').onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;if(d.r!==undefined)speak(qs[d.r].x);else if(d.c!==undefined)copy(qs[d.c].x);else if(d.k!==undefined)qs[d.k].d=!qs[d.k].d;else qs.splice(+d.x,1);qList()};qList();
+
+/* before */
+const ND=[['Live captions','Please turn on live captions or provide a captioner.'],['Slides in advance','Please send the slides and any reading at least 24 hours before, in an accessible format (text-based, with descriptions of images).'],['Recording and transcript','Please share the recording and a transcript afterwards.'],['Sign language interpreter','Please provide a sign language interpreter and keep them visible on screen.'],['Visuals described aloud','Please describe slides, charts and images out loud as you present.'],['Screen-reader friendly platform','Please use a platform that works with screen readers and the keyboard, and tell me how to join.'],['Ask in the chat','Please let me ask questions in the chat instead of speaking, and read them out.'],['Breaks and extra time','Please include short breaks and allow extra time for questions.']];
+let pr=Object.assign({sm:'',dt:'',og:'',nm:'',n:[0,1]},ld('sa-prep',{}));
+$('nd').innerHTML=ND.map((n,i)=>`<label><input type="checkbox" data-n="${i}"> ${esc(n[0])}</label>`).join('');
+['sm','dt','og','nm'].forEach(k=>{$(k).value=pr[k];$(k).oninput=()=>{pr[k]=$(k).value;mail()}});
+$('nd').onchange=e=>{const i=+e.target.dataset.n;pr.n=pr.n.filter(x=>x!==i);if(e.target.checked)pr.n.push(i);mail()};
+function mail(){document.querySelectorAll('#nd input').forEach(c=>c.checked=pr.n.includes(+c.dataset.n));
+ const s=pr.sm||'[seminar name]',t=`Dear ${pr.og||'[organiser]'},\n\nI plan to attend ${s}${pr.dt?' on '+pr.dt:''}. I am a postgraduate student and I would like to take part fully. I would be grateful if you could arrange the following:\n\n${pr.n.sort((a,b)=>a-b).map(i=>'- '+ND[i][1]).join('\n')||'- [add what you need]'}\n\nPlease tell me if you need anything more from me. Thank you for your help.\n\nKind regards,\n${pr.nm||'[your name]'}`;
+ $('em').value=t;$('el').href='mailto:?subject='+encodeURIComponent('Access support for '+s)+'&body='+encodeURIComponent(t);sv('sa-prep',pr)}
+$('ec').onclick=()=>copy($('em').value);mail();
+const CK=['Join 10 minutes early and test the sound.','Turn on captions in the meeting platform.','Open Seminar Access in a second window or on another device.','Open the slides before it starts.','Write your question in advance and save it under Ask.','Know how to leave and rejoin the session.'];
+let ck=ld('sa-ck',[]);
+$('ck').innerHTML=CK.map((c,i)=>`<label><input type="checkbox" data-k="${i}"${ck.includes(i)?' checked':''}> ${esc(c)}</label>`).join('');
+$('ck').onchange=e=>{const i=+e.target.dataset.k;ck=ck.filter(x=>x!==i);if(e.target.checked)ck.push(i);sv('sa-ck',ck)};
+</script>
+</body>
+</html>
